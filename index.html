@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Protected Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffccd5;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            color: #d63384;
+        }
+        .password-container {
+            text-align: center;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+        }
+        #noBtn {
+            background-color: #6c757d;
+            color: white;
+        }
+        #reaction {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #d63384;
+            font-weight: bold;
+            display: none;
+        }
+        #gif {
+            margin-top: 20px;
+            display: none;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Password Screen -->
+        <div class="password-container" id="passwordScreen">
+            <h1>HI MAHAL!</h1>
+            <p>ANO MUNA PASSWORD?</p>
+            <input type="password" id="passwordInput" placeholder="Enter Password" />
+            <button id="loginBtn">Login</button>
+            <p id="errorMessage" style="color: red; display: none;">Incorrect Password. Try Again.</p>
+        </div>
+
+        <!-- Valentine's Page -->
+        <div class="main-content" id="valentineScreen" style="display: none;">
+            <h1>Pwede ka bang makasama ngayong Araw ng mga Puso?</h1>
+            <div class="buttons">
+                <button id="yesBtn">Yes</button>
+                <button id="noBtn">No</button>
+            </div>
+            <div id="reaction"></div>
+            <img id="gif" src="" />
+        </div>
+    </div>
+
+    <script>
+        // Password verification
+        document.getElementById("loginBtn").addEventListener("click", function() {
+            const password = document.getElementById("passwordInput").value;
+            if (password === "natsusnow") {
+                document.getElementById("passwordScreen").style.display = "none"; // Hide the password screen
+                document.getElementById("valentineScreen").style.display = "block"; // Show the Valentine's page
+            } else {
+                document.getElementById("errorMessage").style.display = "block"; // Show error if password is wrong
+            }
+        });
+
+        // Valentine's page behavior
+        document.getElementById("yesBtn").addEventListener("click", function() {
+            document.getElementById("reaction").innerText = "YOWN! SEE YOU SA VALENTINES DATE NATIN! 💖";
+            document.getElementById("reaction").style.display = "block";
+            document.getElementById("gif").src = "https://media.giphy.com/media/MLN293JG7qZgfByKNz/giphy.gif";
+            document.getElementById("gif").style.display = "block";
+        });
+
+        document.getElementById("noBtn").addEventListener("click", function() {
+            this.innerText = "Yes";
+            this.style.backgroundColor = "#ff4d6d";
+            document.getElementById("reaction").innerText = "HAHA, SYEMPRE OO KA PARIN! 😘";
+            document.getElementById("reaction").style.display = "block";
+            document.getElementById("gif").src = "https://media.giphy.com/media/l4pTrTloKKGvNCfCg/giphy.gif";
+            document.getElementById("gif").style.display = "block";
+        });
+    </script>
+</body>
+</html>
